@@ -43,8 +43,12 @@ public class Program {
 				}
 				
 				if(cm.getPromoted() != null) {
-					System.out.println("Diga para qual peca voce quer se promover (B/C/T/Q): ");
-					String type = sc.nextLine();
+					System.out.print("Diga para qual peca voce quer se promover (B/C/T/Q): ");
+					String type = sc.nextLine().toUpperCase();
+					while (!type.equals("B") && !type.equals("C") && !type.equals("T") && !type.equals("Q")) {
+						System.out.print("Tipo de peca errada! Diga para qual peca voce quer se promover (B/C/T/Q): ");
+						type = sc.nextLine().toUpperCase();
+					}
 					cm.replacePromotedPiece(type);
 				}
 				
