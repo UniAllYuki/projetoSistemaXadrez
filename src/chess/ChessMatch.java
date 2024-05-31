@@ -10,6 +10,7 @@ import boardgame.Position;
 import chess.pieces.Bispo;
 import chess.pieces.Cavalo;
 import chess.pieces.Peao;
+import chess.pieces.Rainha;
 import chess.pieces.Rei;
 import chess.pieces.Torre;
 
@@ -189,6 +190,7 @@ public class ChessMatch {
 	private void initialSetup() {
 		//White
 		placeNewPiece('e', 1, new Rei(board, Color.WHITE));
+		placeNewPiece('d', 1, new Rainha(board, Color.WHITE));
 		placeNewPiece('a', 1, new Torre(board, Color.WHITE));
 		placeNewPiece('h', 1, new Torre(board, Color.WHITE));
 		placeNewPiece('c', 1, new Bispo(board, Color.WHITE));
@@ -207,6 +209,7 @@ public class ChessMatch {
 		
 		//Black
 		placeNewPiece('e', 8, new Rei(board, Color.BLACK));
+		placeNewPiece('d', 8, new Rainha(board, Color.BLACK));
 		placeNewPiece('a', 8, new Torre(board, Color.BLACK));
 		placeNewPiece('h', 8, new Torre(board, Color.BLACK));
 		placeNewPiece('c', 8, new Bispo(board, Color.BLACK));
