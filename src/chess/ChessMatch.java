@@ -94,6 +94,21 @@ public class ChessMatch {
 			piecesOnTheBoard.remove(capturedPiece);
 			capturedPieces.add(capturedPiece);
 		}
+		// Roque
+		if (p instanceof Rei && target.getColumn() == source.getColumn() + 2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() +3);
+			Position TargetT = new Position(source.getRow(), source.getColumn() +1);
+			ChessPiece torre = (ChessPiece)board.removePiece(sourceT);
+			board.placePiece(torre, TargetT);
+			torre.increaseMoveCount();
+		} 
+		if (p instanceof Rei && target.getColumn() == source.getColumn() -2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() -4);
+			Position TargetT = new Position(source.getRow(), source.getColumn() -1);
+			ChessPiece torre = (ChessPiece)board.removePiece(sourceT);
+			board.placePiece(torre, TargetT);
+			torre.increaseMoveCount();
+		}
 		return capturedPiece;
 	}
 	
@@ -105,6 +120,22 @@ public class ChessMatch {
 			board.placePiece(capturedPiece, target);
 			capturedPieces.remove(capturedPiece);
 			piecesOnTheBoard.add(capturedPiece);
+		}
+		
+		// Desfazer Roque
+		if (p instanceof Rei && target.getColumn() == source.getColumn() + 2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() +3);
+			Position TargetT = new Position(source.getRow(), source.getColumn() +1);
+			ChessPiece torre = (ChessPiece)board.removePiece(TargetT);
+			board.placePiece(torre, sourceT);
+			torre.decreaseMoveCount();
+		} 
+		if (p instanceof Rei && target.getColumn() == source.getColumn() -2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() -4);
+			Position TargetT = new Position(source.getRow(), source.getColumn() -1);
+			ChessPiece torre = (ChessPiece)board.removePiece(TargetT);
+			board.placePiece(torre, sourceT);
+			torre.decreaseMoveCount();
 		}
 	}
 	
@@ -189,7 +220,7 @@ public class ChessMatch {
 	
 	private void initialSetup() {
 		//White
-		placeNewPiece('e', 1, new Rei(board, Color.WHITE));
+		placeNewPiece('e', 1, new Rei(board, Color.WHITE, this));
 		placeNewPiece('d', 1, new Rainha(board, Color.WHITE));
 		placeNewPiece('a', 1, new Torre(board, Color.WHITE));
 		placeNewPiece('h', 1, new Torre(board, Color.WHITE));
@@ -208,7 +239,7 @@ public class ChessMatch {
 		
 		
 		//Black
-		placeNewPiece('e', 8, new Rei(board, Color.BLACK));
+		placeNewPiece('e', 8, new Rei(board, Color.BLACK, this));
 		placeNewPiece('d', 8, new Rainha(board, Color.BLACK));
 		placeNewPiece('a', 8, new Torre(board, Color.BLACK));
 		placeNewPiece('h', 8, new Torre(board, Color.BLACK));
