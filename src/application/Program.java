@@ -41,6 +41,13 @@ public class Program {
 				if (capturedPiece != null) {
 					captured.add(capturedPiece);
 				}
+				
+				if(cm.getPromoted() != null) {
+					System.out.println("Diga para qual peca voce quer se promover (B/C/T/Q): ");
+					String type = sc.nextLine();
+					cm.replacePromotedPiece(type);
+				}
+				
 			}
 			catch (ChessExpection e) {
 				System.out.println(e.getMessage());
